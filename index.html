@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>LightMax Pillow Lab</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <a class="brand" href="#"><span class="brand-mark">L</span><span>LIGHTMAX <small>MOCKUP LAB</small></span></a>
+      <div class="top-status"><span class="live-dot"></span> Runs in your browser</div>
+    </header>
+    <main class="workspace">
+      <aside class="sidebar">
+        <div class="eyebrow">CUSTOM PRODUCT STUDIO</div>
+        <h1>Make your image<br><em>into a pillow.</em></h1>
+        <p class="intro">Upload a photo, cut away its background, and preview a custom-shaped stuffed pillow from every angle.</p>
+        <section class="step-card">
+          <div class="section-heading"><span class="step-number">01</span><div><h2>Your artwork</h2><p>PNG, JPG or WebP · up to 15 MB</p></div></div>
+          <label class="upload-zone" id="dropZone" for="fileInput">
+            <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" />
+            <span class="upload-icon">↑</span><strong>Choose an image</strong><span>or drop it here</span>
+          </label>
+          <div class="file-row" id="fileRow" hidden><span class="file-thumb" id="fileThumb"></span><div class="file-info"><strong id="fileName">Image</strong><small id="fileMeta">Ready to edit</small></div><button class="icon-button" id="removeImage" aria-label="Remove image">×</button></div>
+          <button class="button button-primary" id="removeBg" disabled><span>✦</span> Remove background with AI</button>
+          <p class="hint" id="aiHint">First load downloads the model. Commercial use requires a model license.</p>
+        </section>
+        <section class="step-card controls-card">
+          <div class="section-heading"><span class="step-number">02</span><div><h2>Shape & finish</h2><p>Customize the pillow body</p></div></div>
+          <label class="control-label" for="thickness">Pillow thickness <output id="thicknessValue">18%</output></label>
+          <input type="range" id="thickness" min="8" max="32" value="18" />
+          <label class="control-label" for="rounding">Soft edge <output id="roundingValue">Medium</output></label>
+          <input type="range" id="rounding" min="1" max="6" value="3" />
+          <div class="toggle-row"><div><strong>Same artwork on back</strong><small>Print matching design on both sides</small></div><label class="switch"><input id="sameBack" type="checkbox" checked /><span></span></label></div>
+          <div class="toggle-row"><div><strong>Studio background</strong><small>Soft neutral product-shot backdrop</small></div><label class="switch"><input id="studioBg" type="checkbox" checked /><span></span></label></div>
+        </section>
+        <section class="step-card export-card">
+          <div class="section-heading"><span class="step-number">03</span><div><h2>Export</h2><p>Download your current mockup</p></div></div>
+          <div class="export-buttons"><button class="button button-secondary" id="downloadPng" disabled>Download cutout PNG</button><button class="button button-secondary" id="download3d" disabled>Save 3D view</button></div>
+          <p class="hint">Prototype preview only. Confirm supplier print templates before production.</p>
+        </section>
+        <footer>LIGHTMAX LAB <span>•</span> PROTOTYPE 1.0</footer>
+      </aside>
+      <section class="preview-area">
+        <div class="preview-toolbar"><div><span class="preview-kicker">LIVE PRODUCT PREVIEW</span><strong id="previewTitle">Your pillow, from every angle</strong></div><div class="view-switch"><button class="view-button active" data-view="3d">3D VIEW</button><button class="view-button" data-view="2d">2D CUTOUT</button></div></div>
+        <div class="stage" id="stage">
+          <div class="stage-grid"></div>
+          <div id="threeHost" class="three-host"></div>
+          <div id="twoDHost" class="two-d-host" hidden><canvas id="flatCanvas" width="1200" height="900"></canvas></div>
+          <div class="empty-state" id="emptyState"><div class="empty-orbit"><div class="pillow-placeholder"><span>✦</span></div></div><h3>Your custom pillow starts here</h3><p>Upload any photo, then remove its background to create a shaped pillow mockup.</p><label for="fileInput" class="button button-primary">Upload your image</label></div>
+          <div class="stage-chip"><span class="live-dot"></span><span id="stageStatus">READY FOR YOUR IMAGE</span></div>
+          <div class="rotate-tip" id="rotateTip">↻ Drag to rotate · Scroll to zoom</div>
+          <button class="reset-view" id="resetView" title="Reset camera" disabled>⟳ Reset view</button>
+        </div>
+        <div class="preview-footer"><div class="mini-stat"><span class="stat-icon">◈</span><div><small>SHAPE</small><strong>Image silhouette</strong></div></div><div class="mini-stat"><span class="stat-icon">↔</span><div><small>PRINT SIDES</small><strong id="sideStatus">Front + back</strong></div></div><div class="mini-stat"><span class="stat-icon">◉</span><div><small>PREVIEW MODE</small><strong id="modeStatus">Interactive 3D</strong></div></div></div>
+        <div class="notice"><span>ⓘ</span><p><strong>For the most accurate shape:</strong> use AI background removal on a clear photo. The transparent cutout defines the outer silhouette; the 3D view adds thickness, fabric shading and a soft edge. This is a visual mockup, not a verified manufacturing template.</p></div>
+      </section>
+    </main>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

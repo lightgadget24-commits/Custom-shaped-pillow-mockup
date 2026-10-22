@@ -1,0 +1,9 @@
+{
+  "name": "lightmax-pillow-mockup",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {"dev":"vite --host 0.0.0.0", "build":"vite build", "preview":"vite preview --host 0.0.0.0"},
+  "dependencies": {"@huggingface/transformers":"^3.7.2", "three":"^0.180.0", "vite":"^6.4.1"},
+  "devDependencies": {}
+}
